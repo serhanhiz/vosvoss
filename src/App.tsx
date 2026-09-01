@@ -20,6 +20,8 @@ import {
   Car,
   Lightbulb,
   Radio,
+  User as UserIcon,
+  LogOut,
 } from 'lucide-react';
 import { VosvosConfig, PresetVosvos } from './types';
 import { PRESET_VOSVOS_LIST } from './data/vosvosData';
@@ -30,9 +32,13 @@ import { WhyMostBeautiful } from './components/WhyMostBeautiful';
 import { TimelineGallery } from './components/TimelineGallery';
 import { VosvosQuiz } from './components/VosvosQuiz';
 import { VosvosGame } from './components/VosvosGame';
+import { AuthModal } from './components/AuthModal';
+import { useAuth } from './context/AuthContext';
 import { audioEngine } from './utils/audioEngine';
 
 export default function App() {
+  const { user, logout, openAuthModal } = useAuth();
+
   // Main Vosvos Configuration State
   const [config, setConfig] = useState<VosvosConfig>(PRESET_VOSVOS_LIST[0].config);
   const [isEngineRunning, setIsEngineRunning] = useState(false);
@@ -115,7 +121,7 @@ export default function App() {
             })}
           </div>
 
-          {/* Quick Sound/Share Button */}
+          {/* Quick Sound/Share & Auth Buttons */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
@@ -128,6 +134,30 @@ export default function App() {
               <Share2 className="w-3.5 h-3.5 text-[#A67B5B]" />
               <span className="hidden md:inline">Kartımı Paylaş</span>
             </button>
+
+            {user ? (
+              <div className="flex items-center gap-2 bg-[#E9EDC9] px-3 py-1.5 rounded-full border border-[#CCD5AE] text-xs">
+                <span className="font-bold text-[#5D554D] flex items-center gap-1">
+                  <UserIcon className="w-3 h-3 text-[#8FA382]" />
+                  {user.name || user.email.split('@')[0]}
+                </span>
+                <button
+                  onClick={logout}
+                  className="p-1 hover:bg-[#CCD5AE] rounded-full text-[#5D554D] transition-colors cursor-pointer"
+                  title="Çıkış Yap"
+                >
+                  <LogOut size={13} />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => openAuthModal('login')}
+                className="px-3.5 py-1.5 rounded-full bg-[#8FA382] hover:bg-[#7D8E74] text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs cursor-pointer"
+              >
+                <UserIcon className="w-3.5 h-3.5" />
+                <span>Giriş / Kayıt</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -303,6 +333,9 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Auth Modal for Login & Register */}
+      <AuthModal />
 
       {/* Footer */}
       <footer className="w-full bg-[#4A443F] text-[#D6D1C7] border-t border-[#5D554D] py-10 px-4 sm:px-6 mt-12">
