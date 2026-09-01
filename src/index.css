@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+.font-serif-vintage {
+  font-family: 'DM Serif Display', serif;
+}
+
+.font-handwritten {
+  font-family: 'Caveat', cursive;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes engine-vibration {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(1px, -1px) rotate(0.1deg); }
+  50% { transform: translate(-1px, 1px) rotate(-0.1deg); }
+  75% { transform: translate(1px, 0.5px) rotate(0.05deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-engine-rumble {
+  animation: engine-vibration 0.08s linear infinite;
+}
+
+.animate-engine-idle {
+  animation: engine-vibration 0.16s linear infinite;
+}

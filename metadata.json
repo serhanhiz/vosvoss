@@ -1,0 +1,6 @@
+{
+  "name": "Dünyanın En Güzel Arabası: Vosvos",
+  "description": "Efsanevi Volkswagen Beetle (Vosvos) interaktif tasarım atölyesi, hava soğutmalı boksör motor ses simülatörü, tarihçe, modeller ve nostaljik deneyim.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
