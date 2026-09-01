@@ -1,4 +1,4 @@
-﻿import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export interface User {
   id: string;
@@ -64,7 +64,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
+      const isJson = res.headers.get('content-type')?.includes('application/json');
+      const data = isJson ? await res.json() : { error: 'Sunucuya bağlanılamadı (Geçersiz yanıt).' };
 
       if (!res.ok) {
         return { success: false, error: data.error || 'Giriş yapılamadı.' };
@@ -89,7 +90,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         body: JSON.stringify({ name, email, password }),
       });
 
-      const data = await res.json();
+      const isJson = res.headers.get('content-type')?.includes('application/json');
+      const data = isJson ? await res.json() : { error: 'Sunucuya bağlanılamadı (Geçersiz yanıt).' };
 
       if (!res.ok) {
         return { success: false, error: data.error || 'Kayıt yapılamadı.' };

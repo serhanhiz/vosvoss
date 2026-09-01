@@ -54,7 +54,8 @@ export default function Chat() {
         }),
       });
 
-      const data = await response.json();
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+      const data = isJson ? await response.json() : { error: 'Sunucudan beklenmeyen bir yanıt döndü.' };
 
       if (!response.ok) {
         throw new Error(data.error || 'Sunucudan beklenmeyen bir hata döndü.');
