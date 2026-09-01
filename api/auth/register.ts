@@ -1,8 +1,15 @@
 ﻿import type { VercelRequest, VercelResponse } from "@vercel/node";
-import prisma from "../../lib/prisma";
-import { hashPassword, generateToken } from "../../lib/auth";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+const prisma = new PrismaClient({ log: ["error"] });
+const JWT_SECRET = process.env.JWT_SECRET || "vosvos_secret_jwt_key_2026_super_secure";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS & JSON headers
+  res.setHeader("Content-Type", "application/json");
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
@@ -28,7 +35,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(409).json({ error: "Bu e-posta adresi ile zaten bir hesap bulunmaktadır." });
     }
 
-    const hashedPassword = await hashPassword(password);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = await prisma.user.create({
       data: {
@@ -38,11 +46,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     });
 
-    const token = generateToken({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, name: user.name },
+      JWT_SECRET,
+      { expiresIn: "7d" }
+    );
 
     return res.status(201).json({
       message: "Kayıt işlemi başarıyla tamamlandı.",
