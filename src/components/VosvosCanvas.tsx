@@ -105,7 +105,7 @@ export const VosvosCanvas: React.FC<VosvosCanvasProps> = ({
         className="relative w-full max-w-2xl py-4"
       >
         <svg
-          viewBox="0 0 900 480"
+          viewBox="0 0 950 490"
           className="w-full h-auto drop-shadow-md select-none cursor-pointer"
           onClick={handleLoveClick}
         >
@@ -113,59 +113,91 @@ export const VosvosCanvas: React.FC<VosvosCanvasProps> = ({
             {/* Body Gradients */}
             <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor={config.bodyColor} stopOpacity="1" />
-              <stop offset="60%" stopColor={config.bodyColor} stopOpacity="1" />
-              <stop offset="100%" stopColor="#1a1a1a" stopOpacity="0.25" />
+              <stop offset="35%" stopColor={config.bodyColor} stopOpacity="1" />
+              <stop offset="70%" stopColor={config.bodyColor} stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#1a1a1a" stopOpacity="0.35" />
             </linearGradient>
 
-            <linearGradient id="roofLight" x1="0%" y1="0%" x2="100%" y2="50%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4" />
+            <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
+              <stop offset="40%" stopColor="#ffffff" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0.25" />
+            </linearGradient>
+
+            <linearGradient id="roofLight" x1="0%" y1="0%" x2="100%" y2="30%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5" />
+              <stop offset="60%" stopColor="#ffffff" stopOpacity="0.1" />
               <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
             </linearGradient>
 
             <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#d5e8f5" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#b4d2e7" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#7daec9" stopOpacity="0.95" />
+              <stop offset="0%" stopColor="#d8ecf8" stopOpacity="0.92" />
+              <stop offset="45%" stopColor="#b2d4eb" stopOpacity="0.85" />
+              <stop offset="85%" stopColor="#78a9c8" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#4a7c9d" stopOpacity="0.98" />
             </linearGradient>
 
             <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="35%" stopColor="#d8dde2" />
-              <stop offset="50%" stopColor="#9aa0a6" />
-              <stop offset="65%" stopColor="#f1f3f4" />
-              <stop offset="100%" stopColor="#bdc1c6" />
+              <stop offset="25%" stopColor="#e2e8f0" />
+              <stop offset="50%" stopColor="#94a3b8" />
+              <stop offset="75%" stopColor="#f8fafc" />
+              <stop offset="100%" stopColor="#64748b" />
+            </linearGradient>
+
+            <linearGradient id="bumperChrome" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="35%" stopColor="#cbd5e1" />
+              <stop offset="70%" stopColor="#64748b" />
+              <stop offset="100%" stopColor="#334155" />
             </linearGradient>
 
             <linearGradient id="beamGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" stopColor="#ffe680" stopOpacity="0.75" />
-              <stop offset="50%" stopColor="#ffe680" stopOpacity="0.3" />
+              <stop offset="0%" stopColor="#fff2a8" stopOpacity="0.85" />
+              <stop offset="40%" stopColor="#ffe680" stopOpacity="0.45" />
+              <stop offset="80%" stopColor="#ffe680" stopOpacity="0.15" />
               <stop offset="100%" stopColor="#ffe680" stopOpacity="0" />
             </linearGradient>
 
-            {/* Rubber and tire pattern */}
-            <radialGradient id="hubcapShine" cx="35%" cy="35%" r="65%">
+            {/* Radial Hubcap Chrome Dome */}
+            <radialGradient id="hubcapShine" cx="35%" cy="30%" r="70%">
               <stop offset="0%" stopColor="#ffffff" />
-              <stop offset="45%" stopColor="#c5cbd3" />
-              <stop offset="90%" stopColor="#70757a" />
-              <stop offset="100%" stopColor="#3c4043" />
+              <stop offset="35%" stopColor="#e2e8f0" />
+              <stop offset="70%" stopColor="#94a3b8" />
+              <stop offset="90%" stopColor="#64748b" />
+              <stop offset="100%" stopColor="#334155" />
             </radialGradient>
+
+            {/* Wheel Rim Shadow Gradient */}
+            <radialGradient id="rimDepth" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#000000" stopOpacity="0.1" />
+              <stop offset="80%" stopColor="#000000" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0.75" />
+            </radialGradient>
+
+            {/* Lens Pattern */}
+            <pattern id="lensPattern" width="4" height="4" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#94a3b8" strokeWidth="0.8" opacity="0.45" />
+            </pattern>
           </defs>
 
-          {/* Shadow under car */}
-          <ellipse cx="450" cy="415" rx="360" ry="24" fill="#1e1e1e" fillOpacity="0.28" filter="blur(6px)" />
-          <ellipse cx="450" cy="418" rx="280" ry="12" fill="#0f0f0f" fillOpacity="0.4" />
+          {/* Realistic Ground Shadow under car */}
+          <ellipse cx="480" cy="425" rx="390" ry="24" fill="#181513" fillOpacity="0.3" filter="blur(6px)" />
+          <ellipse cx="480" cy="428" rx="320" ry="14" fill="#0f0d0c" fillOpacity="0.45" />
+          <ellipse cx="290" cy="426" rx="65" ry="9" fill="#000000" fillOpacity="0.6" />
+          <ellipse cx="680" cy="426" rx="65" ry="9" fill="#000000" fillOpacity="0.6" />
 
           {/* Exhaust Smoke Animation when Engine is Running */}
           {isEngineRunning && (
             <g transform="translate(130, 396)">
               <motion.circle
-                animate={{ cx: [-10, -60, -110], cy: [0, -15, -35], r: [4, 12, 22], opacity: [0.7, 0.4, 0] }}
-                transition={{ repeat: Infinity, duration: 0.9, ease: 'easeOut' }}
+                animate={{ cx: [-10, -65, -125], cy: [0, -18, -40], r: [4, 13, 24], opacity: [0.75, 0.45, 0] }}
+                transition={{ repeat: Infinity, duration: 0.85, ease: 'easeOut' }}
                 fill="#8c9096"
               />
               <motion.circle
-                animate={{ cx: [-15, -75, -135], cy: [2, -25, -50], r: [5, 15, 26], opacity: [0.6, 0.35, 0] }}
-                transition={{ repeat: Infinity, duration: 1.1, delay: 0.3, ease: 'easeOut' }}
+                animate={{ cx: [-15, -80, -145], cy: [2, -28, -55], r: [5, 16, 28], opacity: [0.65, 0.35, 0] }}
+                transition={{ repeat: Infinity, duration: 1.05, delay: 0.25, ease: 'easeOut' }}
                 fill="#a0a5ab"
               />
             </g>
@@ -174,232 +206,314 @@ export const VosvosCanvas: React.FC<VosvosCanvasProps> = ({
           {/* Headlight Beam Effect */}
           {config.headlightsOn && (
             <g>
-              <polygon points="760,332 895,300 895,430 765,355" fill="url(#beamGrad)" />
-              <circle cx="760" cy="342" r="22" fill="#fff4b8" fillOpacity="0.85" filter="blur(4px)" />
+              <polygon points="790,325 945,285 945,450 798,355" fill="url(#beamGrad)" />
+              <circle cx="792" cy="336" r="26" fill="#fff9d6" fillOpacity="0.9" filter="blur(5px)" />
             </g>
           )}
 
           {/* ROOF RACK ACCESSORIES */}
           {config.roofRack !== 'none' && (
             <g id="roof-rack-group">
-              {/* Metal Rack Base */}
+              {/* Metal Rack Base with Legs attached to Rain Gutter */}
               <path
-                d="M 330 160 L 570 160 M 340 160 L 350 178 M 410 160 L 415 174 M 490 160 L 490 175 M 560 160 L 550 178"
+                d="M 335 152 L 575 152 M 350 152 L 360 174 M 420 152 L 425 168 M 495 152 L 498 168 M 565 152 L 555 174"
                 stroke="url(#chromeGrad)"
-                strokeWidth="4.5"
+                strokeWidth="4"
                 strokeLinecap="round"
               />
-              <rect x="325" y="156" width="250" height="4" rx="2" fill="#8d9499" />
-              <rect x="320" y="148" width="260" height="3" rx="1.5" fill="url(#chromeGrad)" />
-              <line x1="320" y1="148" x2="325" y2="158" stroke="url(#chromeGrad)" strokeWidth="3" />
-              <line x1="580" y1="148" x2="575" y2="158" stroke="url(#chromeGrad)" strokeWidth="3" />
+              {/* Wooden Slats on Rack */}
+              <rect x="330" y="148" width="250" height="4" rx="2" fill="#8d5b28" stroke="#5c3814" strokeWidth="0.8" />
+              <rect x="325" y="140" width="260" height="3" rx="1.5" fill="url(#chromeGrad)" />
+              <line x1="325" y1="140" x2="330" y2="150" stroke="url(#chromeGrad)" strokeWidth="3" />
+              <line x1="585" y1="140" x2="580" y2="150" stroke="url(#chromeGrad)" strokeWidth="3" />
 
               {/* Specific Items */}
               {config.roofRack === 'luggage' && (
                 <g>
-                  {/* Vintage Leather Suitcase 1 */}
-                  <rect x="345" y="108" width="115" height="44" rx="6" fill="#854d27" stroke="#4a250e" strokeWidth="2.5" />
-                  <rect x="350" y="112" width="105" height="36" rx="4" fill="#a05e32" />
-                  {/* Straps */}
-                  <rect x="370" y="108" width="8" height="44" fill="#4a250e" />
-                  <rect x="425" y="108" width="8" height="44" fill="#4a250e" />
+                  {/* Vintage Leather Suitcase 1 (Large Brown) */}
+                  <rect x="350" y="102" width="115" height="42" rx="6" fill="#854d27" stroke="#4a250e" strokeWidth="2.5" />
+                  <rect x="355" y="106" width="105" height="34" rx="4" fill="#a05e32" />
+                  {/* Straps & Brass Buckles */}
+                  <rect x="375" y="102" width="8" height="42" fill="#381c0b" />
+                  <rect x="430" y="102" width="8" height="42" fill="#381c0b" />
+                  <rect x="374" y="118" width="10" height="6" fill="#d4af37" rx="1" />
+                  <rect x="429" y="118" width="10" height="6" fill="#d4af37" rx="1" />
                   {/* Handle */}
-                  <path d="M 390 108 C 390 98, 415 98, 415 108" stroke="#4a250e" strokeWidth="4" fill="none" />
-                  {/* Vintage stickers */}
-                  <circle cx="395" cy="126" r="8" fill="#e74c3c" />
-                  <rect x="360" y="122" width="12" height="9" fill="#f1c40f" transform="rotate(-10 360 122)" />
+                  <path d="M 395 102 C 395 92, 420 92, 420 102" stroke="#381c0b" strokeWidth="4" fill="none" />
+                  {/* Retro Stickers */}
+                  <circle cx="400" cy="122" r="8" fill="#e74c3c" />
+                  <rect x="362" y="116" width="12" height="9" fill="#f1c40f" transform="rotate(-10 362 116)" />
 
-                  {/* Second Smaller Bag */}
-                  <rect x="470" y="118" width="95" height="34" rx="5" fill="#2c3e50" stroke="#1a252f" strokeWidth="2" />
-                  <rect x="488" y="118" width="6" height="34" fill="#d35400" />
-                  <rect x="535" y="118" width="6" height="34" fill="#d35400" />
+                  {/* Second Smaller Vintage Bag (Navy) */}
+                  <rect x="475" y="110" width="95" height="34" rx="5" fill="#2c3e50" stroke="#1a252f" strokeWidth="2" />
+                  <rect x="492" y="110" width="6" height="34" fill="#c0392b" />
+                  <rect x="540" y="110" width="6" height="34" fill="#c0392b" />
+                  <rect x="480" y="120" width="16" height="12" rx="2" fill="#e67e22" />
                 </g>
               )}
 
               {config.roofRack === 'surfboard' && (
-                <g transform="rotate(-4 450 145)">
-                  {/* Wooden / Turquoise Surfboard */}
+                <g transform="rotate(-3 455 135)">
+                  {/* Classic Longboard with Wooden Stringer */}
                   <path
-                    d="M 280 140 C 350 125, 550 125, 620 142 C 550 152, 350 152, 280 140 Z"
+                    d="M 285 132 C 360 116, 560 116, 630 134 C 560 146, 360 146, 285 132 Z"
                     fill="#3aa89b"
                     stroke="#1d665e"
                     strokeWidth="2.5"
                   />
-                  {/* Retro Surf Stripes */}
-                  <path d="M 310 138 C 370 128, 530 128, 590 140" stroke="#f6b828" strokeWidth="4" fill="none" />
-                  <path d="M 330 142 C 380 132, 510 132, 570 143" stroke="#f4ede2" strokeWidth="3" fill="none" />
-                  {/* Fin */}
-                  <polygon points="310,140 295,124 330,138" fill="#f6b828" />
+                  {/* Wood Stringer down the center */}
+                  <path d="M 285 132 C 360 120, 560 120, 630 134" stroke="#d49b4b" strokeWidth="2" fill="none" />
+                  {/* Retro Competition Stripes */}
+                  <path d="M 315 130 C 375 120, 535 120, 595 132" stroke="#f6b828" strokeWidth="4" fill="none" />
+                  <path d="M 335 134 C 385 124, 515 124, 575 135" stroke="#f4ede2" strokeWidth="2.5" fill="none" />
+                  {/* Surf Fin */}
+                  <polygon points="315,132 300,116 335,130" fill="#f6b828" />
                 </g>
               )}
 
               {config.roofRack === 'skis' && (
                 <g>
-                  {/* Vintage Red & Wooden Skis */}
-                  <path d="M 290 132 C 340 142, 560 145, 600 130" stroke="#ba2d32" strokeWidth="5" strokeLinecap="round" fill="none" />
-                  <path d="M 285 138 C 340 148, 560 150, 605 136" stroke="#4a250e" strokeWidth="5" strokeLinecap="round" fill="none" />
+                  {/* Vintage Wooden Skis with Curved Tips */}
+                  <path d="M 290 122 C 340 134, 570 136, 615 118" stroke="#ba2d32" strokeWidth="5" strokeLinecap="round" fill="none" />
+                  <path d="M 285 128 C 340 140, 570 142, 620 124" stroke="#5c3814" strokeWidth="5" strokeLinecap="round" fill="none" />
                   {/* Ski poles */}
-                  <line x1="310" y1="122" x2="580" y2="152" stroke="#bdc1c6" strokeWidth="2.5" />
-                  <circle cx="330" cy="125" r="7" stroke="#333" strokeWidth="1.5" fill="none" />
+                  <line x1="310" y1="112" x2="595" y2="144" stroke="#cbd5e1" strokeWidth="2.5" />
+                  <circle cx="330" cy="115" r="7" stroke="#334155" strokeWidth="1.5" fill="none" />
                 </g>
               )}
 
               {config.roofRack === 'flowers' && (
                 <g>
-                  <rect x="360" y="125" width="180" height="28" rx="4" fill="#a0522d" stroke="#5c2c16" strokeWidth="2" />
-                  <circle cx="380" cy="120" r="14" fill="#f39c12" />
-                  <circle cx="380" cy="120" r="6" fill="#e74c3c" />
-                  <circle cx="420" cy="115" r="16" fill="#e91e63" />
-                  <circle cx="420" cy="115" r="7" fill="#f1c40f" />
-                  <circle cx="465" cy="118" r="15" fill="#3498db" />
-                  <circle cx="465" cy="118" r="6" fill="#ffffff" />
-                  <circle cx="510" cy="116" r="17" fill="#9b59b6" />
-                  <circle cx="510" cy="116" r="7" fill="#f39c12" />
+                  <rect x="360" y="118" width="185" height="26" rx="4" fill="#a0522d" stroke="#5c2c16" strokeWidth="2" />
+                  <circle cx="380" cy="112" r="14" fill="#f39c12" />
+                  <circle cx="380" cy="112" r="6" fill="#e74c3c" />
+                  <circle cx="420" cy="107" r="16" fill="#e91e63" />
+                  <circle cx="420" cy="107" r="7" fill="#f1c40f" />
+                  <circle cx="465" cy="110" r="15" fill="#3498db" />
+                  <circle cx="465" cy="110" r="6" fill="#ffffff" />
+                  <circle cx="510" cy="108" r="17" fill="#9b59b6" />
+                  <circle cx="510" cy="108" r="7" fill="#f39c12" />
                 </g>
               )}
             </g>
           )}
 
-          {/* MAIN VOSVOS BODY PROFILE */}
+          {/* MAIN VOSVOS (VW TYPE 1 BEETLE) PROFILE */}
           <g id="vosvos-body">
-            {/* Primary Curved Beetle Silhouette */}
+            {/* INNER WHEEL WELL DARK CAVITIES */}
+            <path d="M 220 376 C 220 305, 350 305, 350 376 Z" fill="#121417" />
+            <path d="M 610 376 C 610 305, 740 305, 740 376 Z" fill="#121417" />
+
+            {/* 1. PRIMARY CURVED BEETLE MONOCOQUE HULL (Iconic Double-Arch Silhouette) */}
             <path
               d="
-                M 160 375
-                L 155 350
-                C 155 310, 180 270, 240 230
-                C 310 180, 390 162, 470 162
-                C 570 162, 650 190, 710 240
-                C 745 270, 765 300, 770 345
-                L 770 375
-                L 720 375
-                C 720 315, 620 315, 620 375
-                L 360 375
-                C 360 315, 260 315, 260 375
+                M 172 376
+                C 168 335, 185 285, 235 245
+                C 278 210, 342 174, 420 160
+                C 475 150, 528 154, 575 170
+                C 600 185, 618 214, 635 248
+                C 668 258, 735 288, 794 338
+                C 806 348, 800 370, 775 374
+                L 740 374
+                C 740 308, 610 308, 610 374
+                L 350 374
+                C 350 308, 220 308, 220 374
+                L 172 374
                 Z
               "
               fill="url(#bodyGrad)"
-              stroke="#2c3036"
+              stroke="#22262a"
               strokeWidth="3.5"
+              strokeLinejoin="round"
             />
 
-            {/* Cabriolet Cutout if Model is Cabrio */}
+            {/* 2. CABRIOLET FOLDED SOFT-TOP (When modelStyle === 'cabrio') */}
             {config.modelStyle === 'cabrio' && (
-              <g>
+              <g id="cabrio-folded-top">
+                {/* Folded Canvas Boot behind seats */}
                 <path
-                  d="M 330 170 C 400 170, 560 170, 625 240 L 330 240 Z"
+                  d="M 315 245 C 330 215, 410 215, 440 245 Z"
                   fill="#faf3e6"
-                  opacity="0.95"
+                  stroke="#5c4436"
+                  strokeWidth="2.5"
                 />
                 <path
-                  d="M 320 225 C 340 215, 360 215, 380 225 C 400 235, 420 220, 440 225"
+                  d="M 320 238 C 345 228, 375 228, 400 238 C 415 242, 430 238, 438 242"
                   stroke="#8d6e63"
-                  strokeWidth="6"
+                  strokeWidth="5"
                   fill="none"
                   strokeLinecap="round"
                 />
+                {/* Chrome windshield frame for Cabrio */}
+                <path d="M 570 172 L 635 248" stroke="url(#chromeGrad)" strokeWidth="5" strokeLinecap="round" />
               </g>
             )}
 
-            {/* Rear Engine Louvers (Boksör Havalandırma Izgaraları) */}
-            <g id="engine-louvers" opacity="0.6">
-              <line x1="250" y1="260" x2="280" y2="250" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" />
-              <line x1="245" y1="268" x2="278" y2="258" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" />
-              <line x1="242" y1="276" x2="276" y2="266" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" />
-              <line x1="240" y1="284" x2="274" y2="274" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" />
+            {/* 3. REAR ENGINE LOUVERS (Hava Soğutmalı Boksör Izgaraları) */}
+            <g id="engine-louvers" opacity="0.65">
+              <line x1="245" y1="262" x2="278" y2="252" stroke="#121417" strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="240" y1="270" x2="274" y2="260" stroke="#121417" strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="237" y1="278" x2="271" y2="268" stroke="#121417" strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="234" y1="286" x2="268" y2="276" stroke="#121417" strokeWidth="2.5" strokeLinecap="round" />
             </g>
 
-            {/* Roof Top Highlight */}
+            {/* 4. ROOF HIGHLIGHT & REFLECTION SWEEP */}
             <path
-              d="M 280 215 C 350 170, 440 166, 530 166 C 600 166, 655 190, 695 230"
+              d="M 275 220 C 345 172, 440 162, 525 165 C 565 167, 595 185, 620 220"
               stroke="url(#roofLight)"
-              strokeWidth="6"
+              strokeWidth="7"
               fill="none"
               strokeLinecap="round"
             />
 
-            {/* WINDOWS */}
+            {/* 5. RAIN GUTTER CHROME TRIM (Yağmur Oluğu) */}
+            <path
+              d="M 270 246 C 335 178, 435 158, 525 162 C 570 165, 605 190, 628 246"
+              stroke="url(#chromeGrad)"
+              strokeWidth="2.5"
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* 6. WINDOWS & GLASS ASSEMBLIES */}
             {config.modelStyle !== 'cabrio' && (
               <g id="beetle-windows">
-                {/* Rear Window (Split / Oval / Classic) */}
+                {/* A. REAR QUARTER WINDOW (Split / Oval / Classic / 1303) */}
                 {config.modelStyle === 'split' ? (
-                  // Split Window
+                  // 1949-1952 Pre-A Split Window (Twin Heart Windows)
                   <g>
-                    <path d="M 305 240 C 330 200, 365 190, 395 190 L 395 240 Z" fill="url(#glassGrad)" stroke="#2c3036" strokeWidth="2.5" />
-                    <line x1="395" y1="188" x2="395" y2="242" stroke="url(#chromeGrad)" strokeWidth="4" />
+                    <path
+                      d="M 300 244 C 325 198, 360 185, 388 185 L 388 244 Z"
+                      fill="url(#glassGrad)"
+                      stroke="url(#chromeGrad)"
+                      strokeWidth="2.5"
+                    />
+                    {/* Split Center Bar */}
+                    <rect x="388" y="183" width="7" height="63" rx="1.5" fill="url(#bodyGrad)" stroke="#222" strokeWidth="1" />
+                    <path
+                      d="M 398 185 C 418 185, 438 188, 448 195 L 448 244 L 398 244 Z"
+                      fill="url(#glassGrad)"
+                      stroke="url(#chromeGrad)"
+                      strokeWidth="2.5"
+                    />
                   </g>
                 ) : config.modelStyle === 'oval' ? (
-                  // Oval Window
-                  <ellipse cx="355" cy="216" rx="42" ry="24" fill="url(#glassGrad)" stroke="url(#chromeGrad)" strokeWidth="3" transform="rotate(-15 355 216)" />
+                  // 1953-1957 Iconic Oval Window
+                  <g>
+                    <ellipse
+                      cx="362"
+                      cy="214"
+                      rx="46"
+                      ry="26"
+                      fill="url(#glassGrad)"
+                      stroke="url(#chromeGrad)"
+                      strokeWidth="3.5"
+                      transform="rotate(-18 362 214)"
+                    />
+                    {/* Dark Interior C-Pillar behind oval */}
+                    <path
+                      d="M 416 186 C 435 186, 445 190, 450 196 L 450 244 L 416 244 Z"
+                      fill="url(#glassGrad)"
+                      stroke="url(#chromeGrad)"
+                      strokeWidth="2.5"
+                      opacity="0.85"
+                    />
+                  </g>
                 ) : (
-                  // Classic & 1303 Large Rear Quarter Window
+                  // Classic & 1303 Large Quarter Glass
                   <path
-                    d="M 295 242 C 320 196, 365 186, 420 186 L 420 242 Z"
+                    d="M 292 245 C 322 195, 375 182, 448 182 L 448 245 Z"
                     fill="url(#glassGrad)"
                     stroke="url(#chromeGrad)"
                     strokeWidth="3.5"
                   />
                 )}
 
-                {/* Front Side Window (Door) & Vent Wing (Kelebek Cam) */}
+                {/* B. B-PILLAR (Orta Direk) */}
+                <rect x="448" y="178" width="8" height="70" fill="url(#bodyGrad)" stroke="#1a1c1e" strokeWidth="1" />
+
+                {/* C. DOOR WINDOW (Yan Kapı Camı) */}
                 <path
-                  d="M 432 186 C 490 186, 560 196, 620 242 L 432 242 Z"
+                  d="M 458 182 L 458 245 L 626 245 C 612 214, 595 188, 565 174 C 530 168, 485 174, 458 182 Z"
                   fill="url(#glassGrad)"
                   stroke="url(#chromeGrad)"
                   strokeWidth="3.5"
                 />
 
-                {/* Iconic Triangle Vent Wing (Kelebek Camı Çerçevesi) */}
-                <line x1="575" y1="206" x2="575" y2="242" stroke="url(#chromeGrad)" strokeWidth="3" />
-                <circle cx="578" cy="226" r="3" fill="#333" />
-                <line x1="575" y1="206" x2="618" y2="242" stroke="url(#chromeGrad)" strokeWidth="1.5" />
+                {/* D. ICONIC KELEBEK CAMI (Triangular Quarter Vent Wing) */}
+                <g id="kelebek-cami">
+                  {/* Vertical Chrome Divider Bar */}
+                  <line x1="580" y1="184" x2="580" y2="245" stroke="url(#chromeGrad)" strokeWidth="3" />
+                  {/* Triangular Glass Accent */}
+                  <path
+                    d="M 583 186 C 600 198, 615 220, 624 243 L 583 243 Z"
+                    fill="url(#glassGrad)"
+                    stroke="none"
+                  />
+                  {/* Pivot Latch Knob */}
+                  <circle cx="583" cy="226" r="3.5" fill="#1e242b" stroke="url(#chromeGrad)" strokeWidth="1" />
+                  <rect x="583" y="224" width="7" height="4" rx="1" fill="url(#chromeGrad)" />
+                </g>
 
-                {/* Window glare reflection lines */}
-                <line x1="450" y1="192" x2="490" y2="238" stroke="#ffffff" strokeWidth="3" opacity="0.6" strokeLinecap="round" />
-                <line x1="465" y1="192" x2="505" y2="238" stroke="#ffffff" strokeWidth="1.5" opacity="0.4" strokeLinecap="round" />
+                {/* E. Sun Glare Reflections across windows */}
+                <line x1="475" y1="188" x2="520" y2="242" stroke="#ffffff" strokeWidth="3" opacity="0.65" strokeLinecap="round" />
+                <line x1="492" y1="188" x2="537" y2="242" stroke="#ffffff" strokeWidth="1.5" opacity="0.4" strokeLinecap="round" />
+                <line x1="330" y1="200" x2="365" y2="242" stroke="#ffffff" strokeWidth="2" opacity="0.45" strokeLinecap="round" />
               </g>
             )}
 
-            {/* DOOR LINE & CHROME HANDLE */}
+            {/* 7. AUTHENTIC DOOR SHUT LINE & HANDLE */}
             <path
-              d="M 425 184 L 425 365 M 630 240 L 630 365"
-              stroke="#222"
+              d="M 452 178 L 452 368 M 632 245 C 636 290, 638 335, 638 368"
+              stroke="#1a1c1e"
               strokeWidth="2"
-              opacity="0.75"
+              opacity="0.8"
             />
-            {/* Chrome Door Handle */}
-            <rect x="445" y="258" width="26" height="6" rx="3" fill="url(#chromeGrad)" stroke="#333" strokeWidth="1" />
-            <circle cx="466" cy="261" r="2" fill="#222" />
+            {/* Chrome Door Handle (Classic Pull handle with push button) */}
+            <g transform="translate(472, 260)">
+              <rect x="0" y="0" width="28" height="7" rx="3.5" fill="url(#chromeGrad)" stroke="#1e242b" strokeWidth="1" />
+              <circle cx="23" cy="3.5" r="2.2" fill="#1e242b" />
+              <line x1="2" y1="3.5" x2="18" y2="3.5" stroke="#ffffff" strokeWidth="1.2" />
+            </g>
 
-            {/* SPECIAL DECALS & EDITIONS */}
+            {/* 8. CHROME HORIZONTAL BELTLINE MOULDING (Krom Yan Çıta) */}
+            <path
+              d="M 235 248 C 340 248, 520 248, 632 248"
+              stroke="url(#chromeGrad)"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* 9. SPECIAL DECALS & LIVERY */}
             {config.decals === 'herbie' && (
               <g id="herbie-livery">
                 {/* Red, White, Blue Racing Stripes along roof & hood */}
                 <path
-                  d="M 175 330 C 240 215, 380 156, 480 156 C 580 156, 680 200, 755 330"
+                  d="M 178 330 C 240 215, 385 152, 485 152 C 585 152, 690 198, 778 335"
                   stroke="#1a4f9c"
-                  strokeWidth="18"
+                  strokeWidth="20"
                   fill="none"
                 />
                 <path
-                  d="M 175 330 C 240 215, 380 156, 480 156 C 580 156, 680 200, 755 330"
+                  d="M 178 330 C 240 215, 385 152, 485 152 C 585 152, 690 198, 778 335"
                   stroke="#ffffff"
-                  strokeWidth="10"
+                  strokeWidth="12"
                   fill="none"
                 />
                 <path
-                  d="M 175 330 C 240 215, 380 156, 480 156 C 580 156, 680 200, 755 330"
+                  d="M 178 330 C 240 215, 385 152, 485 152 C 585 152, 690 198, 778 335"
                   stroke="#d62828"
-                  strokeWidth="5"
+                  strokeWidth="6"
                   fill="none"
                 />
                 {/* Herbie #53 Door Gumball Decal */}
-                <circle cx="525" cy="295" r="32" fill="#ffffff" stroke="#1a4f9c" strokeWidth="3" />
+                <circle cx="545" cy="298" r="34" fill="#ffffff" stroke="#1a4f9c" strokeWidth="3" />
                 <text
-                  x="525"
-                  y="306"
+                  x="545"
+                  y="310"
                   fontFamily="'DM Serif Display', Georgia, serif"
-                  fontSize="32"
+                  fontSize="34"
                   fontWeight="bold"
                   fill="#111827"
                   textAnchor="middle"
@@ -412,28 +526,28 @@ export const VosvosCanvas: React.FC<VosvosCanvasProps> = ({
             {config.decals === 'flower-power' && (
               <g id="flower-power-decals">
                 {/* Large Colorful Hippie Daisy on Door */}
-                <g transform="translate(525, 295)">
+                <g transform="translate(545, 298)">
                   {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
                     <ellipse
                       key={i}
                       cx="0"
-                      cy="-22"
-                      rx="8"
-                      ry="15"
+                      cy="-24"
+                      rx="9"
+                      ry="16"
                       fill={['#f39c12', '#e74c3c', '#9b59b6', '#2ecc71', '#e91e63'][i % 5]}
                       transform={`rotate(${angle})`}
                     />
                   ))}
-                  <circle cx="0" cy="0" r="11" fill="#f1c40f" stroke="#e67e22" strokeWidth="2" />
+                  <circle cx="0" cy="0" r="12" fill="#f1c40f" stroke="#e67e22" strokeWidth="2" />
                 </g>
-                {/* Smaller Flowers on Fenders */}
-                <g transform="translate(230, 310) scale(0.6)">
+                {/* Smaller Flowers */}
+                <g transform="translate(230, 310) scale(0.65)">
                   {[0, 60, 120, 180, 240, 300].map((angle, i) => (
                     <ellipse key={i} cx="0" cy="-16" rx="6" ry="12" fill="#e91e63" transform={`rotate(${angle})`} />
                   ))}
                   <circle cx="0" cy="0" r="8" fill="#f1c40f" />
                 </g>
-                <g transform="translate(710, 310) scale(0.6)">
+                <g transform="translate(735, 315) scale(0.65)">
                   {[0, 60, 120, 180, 240, 300].map((angle, i) => (
                     <ellipse key={i} cx="0" cy="-16" rx="6" ry="12" fill="#3498db" transform={`rotate(${angle})`} />
                   ))}
@@ -444,189 +558,265 @@ export const VosvosCanvas: React.FC<VosvosCanvasProps> = ({
 
             {config.decals === 'two-tone' && (
               <path
-                d="M 160 365 L 155 350 C 155 330, 200 310, 260 305 L 640 305 C 700 310, 755 330, 770 350 L 770 365 Z"
-                fill="#f4ede2"
+                d="M 172 365 L 170 345 C 170 315, 220 295, 290 290 L 670 290 C 730 295, 785 315, 795 345 L 795 365 Z"
+                fill="#f7f3e8"
                 opacity="0.9"
               />
             )}
 
             {config.decals === 'rally' && (
               <g>
-                <rect x="475" y="270" width="80" height="50" rx="6" fill="#111" stroke="#f6b828" strokeWidth="3" />
-                <text x="515" y="306" fontFamily="sans-serif" fontSize="30" fontWeight="900" fill="#f6b828" textAnchor="middle">
+                <rect x="495" y="270" width="85" height="54" rx="6" fill="#111" stroke="#f6b828" strokeWidth="3" />
+                <text x="537" y="308" fontFamily="sans-serif" fontSize="32" fontWeight="900" fill="#f6b828" textAnchor="middle">
                   73
                 </text>
               </g>
             )}
 
-            {/* ICONIC BULBOUS FENDERS (Çamurluklar) */}
-            {/* Rear Fender */}
-            <path
-              d="M 155 365 C 160 290, 220 280, 340 310 C 375 320, 390 355, 385 375 C 375 325, 240 325, 230 375 Z"
-              fill="url(#bodyGrad)"
-              stroke="#2c3036"
-              strokeWidth="3"
-            />
-            {/* Rear Fender Chrome Beading */}
-            <path
-              d="M 160 355 C 175 295, 230 288, 345 315"
-              stroke="url(#chromeGrad)"
-              strokeWidth="3"
-              fill="none"
-            />
+            {/* 10. ICONIC BULBOUS 3D FENDERS (Vosvos'un Karakteristik Şişkin Çamurlukları) */}
+            {/* REAR FENDER (Arka Çamurluk) */}
+            <g id="rear-fender">
+              <path
+                d="
+                  M 165 372
+                  C 155 315, 195 262, 285 262
+                  C 345 262, 385 295, 375 372
+                  C 365 315, 225 315, 215 372
+                  Z
+                "
+                fill="url(#bodyGrad)"
+                stroke="#1e242b"
+                strokeWidth="3.5"
+                strokeLinejoin="round"
+              />
+              {/* Chrome Fender Welting Beading */}
+              <path
+                d="M 168 360 C 160 315, 198 266, 288 266 C 342 266, 380 298, 374 365"
+                stroke="url(#chromeGrad)"
+                strokeWidth="2.5"
+                fill="none"
+              />
+              {/* Rear Teardrop / Elephant Foot Tail Light */}
+              <g transform="translate(162, 318)">
+                <ellipse cx="6" cy="12" rx="7" ry="14" fill="url(#chromeGrad)" stroke="#1e242b" strokeWidth="1" transform="rotate(-15 6 12)" />
+                <ellipse cx="6" cy="8" rx="5" ry="8" fill="#e11d48" stroke="#9f1239" strokeWidth="0.8" transform="rotate(-15 6 8)" />
+                <ellipse cx="7" cy="16" rx="4.5" ry="5" fill="#f59e0b" stroke="#b45309" strokeWidth="0.8" transform="rotate(-15 7 16)" />
+                <circle cx="5" cy="6" r="1.5" fill="#ffffff" opacity="0.75" />
+              </g>
+            </g>
 
-            {/* Front Fender */}
-            <path
-              d="M 590 375 C 595 325, 730 325, 745 375 C 770 375, 790 350, 780 320 C 765 285, 680 290, 600 355 Z"
-              fill="url(#bodyGrad)"
-              stroke="#2c3036"
-              strokeWidth="3"
-            />
-            {/* Front Fender Chrome Beading */}
-            <path
-              d="M 605 348 C 685 288, 765 288, 775 330"
-              stroke="url(#chromeGrad)"
-              strokeWidth="3"
-              fill="none"
-            />
+            {/* FRONT FENDER (Ön Çamurluk - Slanted Nose & Headlight Pod) */}
+            <g id="front-fender">
+              <path
+                d="
+                  M 595 372
+                  C 590 295, 635 258, 705 258
+                  C 775 258, 815 295, 810 348
+                  C 805 368, 785 374, 755 374
+                  C 745 315, 608 315, 595 372
+                  Z
+                "
+                fill="url(#bodyGrad)"
+                stroke="#1e242b"
+                strokeWidth="3.5"
+                strokeLinejoin="round"
+              />
+              {/* Chrome Fender Welting Beading */}
+              <path
+                d="M 600 365 C 596 300, 638 262, 708 262 C 772 262, 810 298, 806 345"
+                stroke="url(#chromeGrad)"
+                strokeWidth="2.5"
+                fill="none"
+              />
 
-            {/* RUNNING BOARD WITH RUBBER RIBS (Basamak) */}
+              {/* Classic Amber Bullet Turn Indicator on Top of Front Fender (Patates Sinyal) */}
+              <g transform="translate(735, 252)">
+                <path d="M 0 6 C 4 0, 16 0, 20 6 Z" fill="url(#chromeGrad)" stroke="#1e242b" strokeWidth="1" />
+                <ellipse cx="10" cy="2" rx="8" ry="4" fill="#f59e0b" stroke="#d97706" strokeWidth="1" />
+                <ellipse cx="8" cy="1" rx="4" ry="1.5" fill="#fef3c7" opacity="0.8" />
+              </g>
+
+              {/* Slotted Chrome Horn Grille below Headlight */}
+              <g transform="translate(802, 348)">
+                <circle cx="0" cy="0" r="6" fill="url(#chromeGrad)" stroke="#1e242b" strokeWidth="1" />
+                <line x1="-3" y1="-2" x2="3" y2="-2" stroke="#1e242b" strokeWidth="1" />
+                <line x1="-4" y1="0" x2="4" y2="0" stroke="#1e242b" strokeWidth="1" />
+                <line x1="-3" y1="2" x2="3" y2="2" stroke="#1e242b" strokeWidth="1" />
+              </g>
+            </g>
+
+            {/* 11. RUNNING BOARD WITH RUBBER RIBS (Yan Basamak & Krom Çıta) */}
             <g id="running-board">
-              <rect x="360" y="368" width="260" height="12" rx="3" fill="#1f2429" stroke="#111" strokeWidth="1.5" />
-              {/* Chrome trim */}
-              <rect x="360" y="376" width="260" height="4" rx="1" fill="url(#chromeGrad)" />
-              {/* Rubber grips */}
-              {[...Array(14)].map((_, i) => (
-                <rect key={i} x={375 + i * 17} y="370" width="6" height="5" rx="1" fill="#333a42" />
+              <rect x="350" y="368" width="260" height="11" rx="2.5" fill="#171a1d" stroke="#0a0c0e" strokeWidth="1.5" />
+              {/* Chrome Outer Lip */}
+              <rect x="350" y="375" width="260" height="4" rx="1" fill="url(#chromeGrad)" />
+              {/* Molded Rubber Grip Ribs */}
+              {[...Array(15)].map((_, i) => (
+                <rect key={i} x={365 + i * 16} y="370" width="5.5" height="4.5" rx="1" fill="#303740" />
               ))}
             </g>
 
-            {/* HEADLIGHT (Ön Far) */}
+            {/* 12. SLANTED NOSE HEADLIGHT ASSEMBLY (Efsanevi Eğimli Cam Far) */}
             <g id="headlight-assembly" onClick={handleHeadlightClick} className="cursor-pointer">
-              {/* Slanted Chrome Bucket */}
-              <ellipse cx="760" cy="336" rx="22" ry="28" fill="url(#chromeGrad)" stroke="#333" strokeWidth="2" transform="rotate(12 760 336)" />
+              {/* Slanted Chrome Bucket Bezel Ring (Angled ~18 degrees) */}
               <ellipse
-                cx="762"
-                cy="336"
-                rx="16"
+                cx="792"
+                cy="335"
+                rx="20"
+                ry="27"
+                fill="url(#chromeGrad)"
+                stroke="#1e242b"
+                strokeWidth="2"
+                transform="rotate(16 792 335)"
+              />
+              {/* Glass Lens with Fluting Lines */}
+              <ellipse
+                cx="794"
+                cy="335"
+                rx="15"
                 ry="22"
-                fill={config.headlightsOn ? '#fffae0' : '#d8e2ec'}
+                fill={config.headlightsOn ? '#fffae0' : 'url(#glassGrad)'}
                 stroke="#64748b"
                 strokeWidth="1.5"
-                transform="rotate(12 762 336)"
+                transform="rotate(16 794 335)"
               />
-              {/* Lens Fluting */}
-              <line x1="756" y1="320" x2="756" y2="352" stroke="#94a3b8" strokeWidth="1.5" opacity="0.6" />
-              <line x1="762" y1="316" x2="762" y2="356" stroke="#94a3b8" strokeWidth="1.5" opacity="0.6" />
-              <line x1="768" y1="320" x2="768" y2="352" stroke="#94a3b8" strokeWidth="1.5" opacity="0.6" />
+              {/* Lens Fluting Ridges */}
+              <line x1="788" y1="318" x2="788" y2="352" stroke="#94a3b8" strokeWidth="1.2" opacity="0.6" />
+              <line x1="794" y1="314" x2="794" y2="356" stroke="#94a3b8" strokeWidth="1.2" opacity="0.6" />
+              <line x1="800" y1="318" x2="800" y2="352" stroke="#94a3b8" strokeWidth="1.2" opacity="0.6" />
+              {/* Glass Specular Reflection Highlight */}
+              <ellipse cx="791" cy="324" rx="5" ry="3" fill="#ffffff" opacity="0.8" transform="rotate(16 791 324)" />
 
               {/* Headlight Eyelashes (Far Kirpikleri) */}
               {config.headlightEyelashes && (
                 <g stroke="#111827" strokeWidth="3" strokeLinecap="round">
-                  <line x1="772" y1="314" x2="795" y2="295" />
-                  <line x1="766" y1="310" x2="784" y2="285" />
-                  <line x1="758" y1="308" x2="770" y2="280" />
-                  <line x1="750" y1="310" x2="756" y2="282" />
+                  <line x1="805" y1="314" x2="828" y2="292" />
+                  <line x1="798" y1="310" x2="817" y2="284" />
+                  <line x1="790" y1="307" x2="802" y2="278" />
+                  <line x1="782" y1="308" x2="788" y2="280" />
                 </g>
               )}
             </g>
 
-            {/* FRONT HOOD CHROME SPEAR & VW EMBLEM */}
-            <path d="M 620 242 C 670 248, 730 270, 755 295" stroke="url(#chromeGrad)" strokeWidth="3.5" fill="none" />
-            <circle cx="725" cy="275" r="9" fill="url(#chromeGrad)" stroke="#1e293b" strokeWidth="1.5" />
-            <text x="725" y="278" fontSize="8" fontWeight="bold" fill="#1e293b" textAnchor="middle">VW</text>
+            {/* 13. FRONT HOOD CENTER CHROME SPEAR & VW LOGO EMBLEM */}
+            <path d="M 635 248 C 690 258, 755 282, 788 308" stroke="url(#chromeGrad)" strokeWidth="3.5" fill="none" />
+            <circle cx="755" cy="285" r="9.5" fill="url(#chromeGrad)" stroke="#1e293b" strokeWidth="1.5" />
+            <text x="755" y="288.5" fontSize="8.5" fontWeight="bold" fill="#1e293b" textAnchor="middle">VW</text>
 
-            {/* BUMPERS (Tamponlar) */}
-            {/* Rear Bumper */}
-            <path
-              d="M 125 365 C 130 355, 145 355, 155 365 L 155 385 C 145 390, 130 385, 125 375 Z"
-              fill="url(#chromeGrad)"
-              stroke="#2c3e50"
-              strokeWidth="2"
-            />
-            {/* Pea-Shooter Exhausts */}
-            <rect x="135" y="392" width="24" height="6" rx="2" fill="url(#chromeGrad)" stroke="#333" strokeWidth="1" />
-            <rect x="135" y="401" width="24" height="6" rx="2" fill="url(#chromeGrad)" stroke="#333" strokeWidth="1" />
+            {/* 14. AUTHENTIC 1960s EXPORT CHROME BUMPERS WITH OVERRIDERS (Bıyıklı Tamponlar) */}
+            {/* REAR BUMPER */}
+            <g id="rear-bumper">
+              {/* Main Chrome Blade */}
+              <path
+                d="M 130 368 C 135 358, 150 358, 160 368 L 160 388 C 150 394, 135 390, 130 380 Z"
+                fill="url(#bumperChrome)"
+                stroke="#1e293b"
+                strokeWidth="2"
+              />
+              {/* Vertical Overrider (Tampon Babası) */}
+              <rect x="142" y="348" width="10" height="42" rx="3" fill="url(#chromeGrad)" stroke="#1e293b" strokeWidth="1.5" />
+              {/* Twin Chrome Pea-Shooter Exhausts */}
+              <rect x="140" y="394" width="26" height="6.5" rx="2" fill="url(#chromeGrad)" stroke="#111" strokeWidth="1" />
+              <ellipse cx="140" cy="397" rx="2" ry="3.2" fill="#0f172a" />
+              <rect x="140" y="403" width="26" height="6.5" rx="2" fill="url(#chromeGrad)" stroke="#111" strokeWidth="1" />
+              <ellipse cx="140" cy="406" rx="2" ry="3.2" fill="#0f172a" />
+            </g>
 
-            {/* Front Bumper & Overriders */}
-            <path
-              d="M 770 365 C 780 355, 795 355, 805 365 L 805 385 C 795 390, 780 385, 770 375 Z"
-              fill="url(#chromeGrad)"
-              stroke="#2c3e50"
-              strokeWidth="2"
-            />
+            {/* FRONT BUMPER */}
+            <g id="front-bumper">
+              <path
+                d="M 795 368 C 805 358, 820 358, 830 368 L 830 388 C 820 394, 805 390, 795 380 Z"
+                fill="url(#bumperChrome)"
+                stroke="#1e293b"
+                strokeWidth="2"
+              />
+              {/* Vertical Overrider */}
+              <rect x="808" y="348" width="10" height="42" rx="3" fill="url(#chromeGrad)" stroke="#1e293b" strokeWidth="1.5" />
+            </g>
 
-            {/* VINTAGE LICENSE PLATE */}
-            <g transform="translate(765, 385)">
-              <rect x="0" y="0" width="46" height="20" rx="3" fill="#ffffff" stroke="#1e293b" strokeWidth="2" />
-              <rect x="2" y="2" width="10" height="16" rx="1" fill="#1d4ed8" />
-              <text x="7" y="13" fontSize="8" fontWeight="bold" fill="#ffffff" textAnchor="middle">TR</text>
-              <text x="28" y="14" fontSize="8" fontWeight="800" fill="#0f172a" textAnchor="middle">
+            {/* 15. VINTAGE LICENSE PLATE */}
+            <g transform="translate(790, 390)">
+              <rect x="0" y="0" width="48" height="20" rx="3" fill="#ffffff" stroke="#1e293b" strokeWidth="2" />
+              <rect x="2" y="2" width="11" height="16" rx="1" fill="#1d4ed8" />
+              <text x="7.5" y="13" fontSize="8" fontWeight="bold" fill="#ffffff" textAnchor="middle">TR</text>
+              <text x="29" y="14" fontSize="8" fontWeight="800" fill="#0f172a" textAnchor="middle">
                 {config.licensePlate.length > 8 ? config.licensePlate.substring(0, 8) : config.licensePlate}
               </text>
             </g>
 
-            {/* WHEELS (Tires, Whitewalls, Hubcaps, EMPI) */}
-            {/* REAR WHEEL */}
-            <g id="rear-wheel" transform="translate(310, 375)">
-              {/* Outer Black Rubber Tire */}
+            {/* 16. WHEELS & TIRES (Classic Dished Rims, Chrome Baby Moon Hubcaps, Whitewalls) */}
+            {/* REAR WHEEL ASSEMBLY */}
+            <g id="rear-wheel" transform="translate(285, 372)">
+              {/* Outer Rubber Tire */}
               <circle cx="0" cy="0" r="54" fill="#1b1e22" stroke="#0a0c0e" strokeWidth="3" />
-              <circle cx="0" cy="0" r="50" stroke="#2d3238" strokeWidth="3" fill="none" />
+              {/* Tire Tread Ring */}
+              <circle cx="0" cy="0" r="49" stroke="#2c323a" strokeWidth="4" fill="none" />
 
-              {/* Whitewall Option */}
-              {config.tireStyle === 'whitewall' ? (
-                <circle cx="0" cy="0" r="42" fill="#faf9f6" stroke="#222" strokeWidth="1" />
-              ) : null}
+              {/* Whitewall Option (Beyaz Yanak) */}
+              {config.tireStyle === 'whitewall' && (
+                <circle cx="0" cy="0" r="41" fill="#faf8f2" stroke="#222" strokeWidth="1.2" />
+              )}
 
-              {/* Inner Steel Rim */}
-              <circle cx="0" cy="0" r="32" fill={config.bodyColor} stroke="#222" strokeWidth="2" />
+              {/* Steel Wheel Rim (Body color or vintage cream) */}
+              <circle cx="0" cy="0" r="32" fill={config.bodyColor} stroke="#111" strokeWidth="2" />
+              <circle cx="0" cy="0" r="32" fill="url(#rimDepth)" />
 
-              {/* Hubcap Styles */}
+              {/* 5 Classic Lug Bolt Holes / Cooling Slots */}
+              {[0, 72, 144, 216, 288].map((ang, i) => (
+                <ellipse key={i} cx="0" cy="-24" rx="4" ry="2" fill="#0a0c0e" transform={`rotate(${ang})`} />
+              ))}
+
+              {/* Hubcap Selection */}
               {config.tireStyle === 'empi-rally' ? (
                 <g>
-                  {/* 8-Spoke EMPI Rally Rims */}
-                  <circle cx="0" cy="0" r="28" fill="#1a1a1a" />
+                  {/* 8-Spoke EMPI Rally Sports Wheel */}
+                  <circle cx="0" cy="0" r="28" fill="#15171a" stroke="#475569" strokeWidth="1.5" />
                   {[0, 45, 90, 135, 180, 225, 270, 315].map((ang, i) => (
-                    <rect key={i} x="-3" y="-26" width="6" height="14" rx="2" fill="url(#chromeGrad)" transform={`rotate(${ang})`} />
+                    <rect key={i} x="-3.5" y="-26" width="7" height="14" rx="2" fill="url(#chromeGrad)" stroke="#111" strokeWidth="0.8" transform={`rotate(${ang})`} />
                   ))}
-                  <circle cx="0" cy="0" r="10" fill="url(#chromeGrad)" />
+                  <circle cx="0" cy="0" r="10" fill="url(#chromeGrad)" stroke="#111" strokeWidth="1" />
                 </g>
               ) : (
-                // Classic Dome Chrome Hubcap with VW stamp
+                // Classic Dome Chrome Hubcap ("Baby Moon") with VW Stamp
                 <g>
-                  <circle cx="0" cy="0" r="24" fill="url(#hubcapShine)" stroke="#4b5563" strokeWidth="1.5" />
-                  <circle cx="0" cy="0" r="12" fill="none" stroke="#6b7280" strokeWidth="1" />
-                  <circle cx="-5" cy="-5" r="4" fill="#ffffff" opacity="0.6" />
-                  <text x="0" y="3" fontSize="7" fontWeight="bold" fill="#374151" textAnchor="middle">VW</text>
+                  <circle cx="0" cy="0" r="24" fill="url(#hubcapShine)" stroke="#334155" strokeWidth="1.8" />
+                  <circle cx="0" cy="0" r="13" fill="none" stroke="#64748b" strokeWidth="1" opacity="0.7" />
+                  <circle cx="-5" cy="-6" r="5" fill="#ffffff" opacity="0.65" />
+                  <text x="0" y="3.5" fontSize="7.5" fontWeight="bold" fill="#334155" textAnchor="middle">VW</text>
                 </g>
               )}
             </g>
 
-            {/* FRONT WHEEL */}
-            <g id="front-wheel" transform="translate(670, 375)">
+            {/* FRONT WHEEL ASSEMBLY */}
+            <g id="front-wheel" transform="translate(675, 372)">
               <circle cx="0" cy="0" r="54" fill="#1b1e22" stroke="#0a0c0e" strokeWidth="3" />
-              <circle cx="0" cy="0" r="50" stroke="#2d3238" strokeWidth="3" fill="none" />
+              <circle cx="0" cy="0" r="49" stroke="#2c323a" strokeWidth="4" fill="none" />
 
-              {config.tireStyle === 'whitewall' ? (
-                <circle cx="0" cy="0" r="42" fill="#faf9f6" stroke="#222" strokeWidth="1" />
-              ) : null}
+              {config.tireStyle === 'whitewall' && (
+                <circle cx="0" cy="0" r="41" fill="#faf8f2" stroke="#222" strokeWidth="1.2" />
+              )}
 
-              <circle cx="0" cy="0" r="32" fill={config.bodyColor} stroke="#222" strokeWidth="2" />
+              <circle cx="0" cy="0" r="32" fill={config.bodyColor} stroke="#111" strokeWidth="2" />
+              <circle cx="0" cy="0" r="32" fill="url(#rimDepth)" />
+
+              {[0, 72, 144, 216, 288].map((ang, i) => (
+                <ellipse key={i} cx="0" cy="-24" rx="4" ry="2" fill="#0a0c0e" transform={`rotate(${ang})`} />
+              ))}
 
               {config.tireStyle === 'empi-rally' ? (
                 <g>
-                  <circle cx="0" cy="0" r="28" fill="#1a1a1a" />
+                  <circle cx="0" cy="0" r="28" fill="#15171a" stroke="#475569" strokeWidth="1.5" />
                   {[0, 45, 90, 135, 180, 225, 270, 315].map((ang, i) => (
-                    <rect key={i} x="-3" y="-26" width="6" height="14" rx="2" fill="url(#chromeGrad)" transform={`rotate(${ang})`} />
+                    <rect key={i} x="-3.5" y="-26" width="7" height="14" rx="2" fill="url(#chromeGrad)" stroke="#111" strokeWidth="0.8" transform={`rotate(${ang})`} />
                   ))}
-                  <circle cx="0" cy="0" r="10" fill="url(#chromeGrad)" />
+                  <circle cx="0" cy="0" r="10" fill="url(#chromeGrad)" stroke="#111" strokeWidth="1" />
                 </g>
               ) : (
                 <g>
-                  <circle cx="0" cy="0" r="24" fill="url(#hubcapShine)" stroke="#4b5563" strokeWidth="1.5" />
-                  <circle cx="0" cy="0" r="12" fill="none" stroke="#6b7280" strokeWidth="1" />
-                  <circle cx="-5" cy="-5" r="4" fill="#ffffff" opacity="0.6" />
-                  <text x="0" y="3" fontSize="7" fontWeight="bold" fill="#374151" textAnchor="middle">VW</text>
+                  <circle cx="0" cy="0" r="24" fill="url(#hubcapShine)" stroke="#334155" strokeWidth="1.8" />
+                  <circle cx="0" cy="0" r="13" fill="none" stroke="#64748b" strokeWidth="1" opacity="0.7" />
+                  <circle cx="-5" cy="-6" r="5" fill="#ffffff" opacity="0.65" />
+                  <text x="0" y="3.5" fontSize="7.5" fontWeight="bold" fill="#334155" textAnchor="middle">VW</text>
                 </g>
               )}
             </g>
