@@ -22,16 +22,19 @@ import {
   ArrowRight,
   RotateCcw,
   CheckCircle,
+  User as UserIcon,
 } from 'lucide-react';
 import { QUIZ_QUESTIONS, QUIZ_RESULTS, PRESET_VOSVOS_LIST } from '../data/vosvosData';
 import { QuizResult, PresetVosvos } from '../types';
 import { audioEngine } from '../utils/audioEngine';
+import { useAuth } from '../context/AuthContext';
 
 interface VosvosQuizProps {
   onApplyPreset: (preset: PresetVosvos) => void;
 }
 
 export const VosvosQuiz: React.FC<VosvosQuizProps> = ({ onApplyPreset }) => {
+  const { user, updateUserData } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [result, setResult] = useState<QuizResult | null>(null);
@@ -100,6 +103,10 @@ export const VosvosQuiz: React.FC<VosvosQuizProps> = ({ onApplyPreset }) => {
 
       const finalResult = QUIZ_RESULTS[winner] || QUIZ_RESULTS.purist;
       setResult(finalResult);
+
+      if (user) {
+        updateUserData({ soulMatch: finalResult.title });
+      }
 
       // Trigger Confetti!
       try {
@@ -220,7 +227,7 @@ export const VosvosQuiz: React.FC<VosvosQuizProps> = ({ onApplyPreset }) => {
           </div>
 
           <span className="text-xs font-bold uppercase tracking-wider text-[#5D554D] bg-[#E9EDC9] border border-[#CCD5AE] px-3.5 py-1 rounded-full mb-2">
-            Senin Ruh Eşin Bulundu!
+            {user?.name ? `${user.name}, Senin Ruh Eşin Bulundu!` : 'Senin Ruh Eşin Bulundu!'}
           </span>
 
           <h4 className="text-2xl sm:text-3xl font-extrabold text-[#5D554D] font-serif-vintage">

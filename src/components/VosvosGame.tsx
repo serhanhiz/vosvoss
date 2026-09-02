@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Trophy, Play, RotateCcw, Sparkles, Volume2, Flame, Award, Car } from 'lucide-react';
+import { Trophy, Play, RotateCcw, Sparkles, Volume2, Flame, Award, Car, User as UserIcon } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
+import { useAuth } from '../context/AuthContext';
 
 interface GameCar {
   id: number;
@@ -14,16 +15,23 @@ interface GameCar {
 }
 
 export const VosvosGame: React.FC = () => {
+  const { user, updateUserData } = useAuth();
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [streak, setStreak] = useState(0);
-  const [highScore, setHighScore] = useState(0);
+  const [highScore, setHighScore] = useState(user?.highScore || 0);
   const [cars, setCars] = useState<GameCar[]>([]);
   const [feedback, setFeedback] = useState<{ text: string; positive: boolean } | null>(null);
 
   const timerRef = useRef<number | null>(null);
   const spawnerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (user?.highScore && user.highScore > highScore) {
+      setHighScore(user.highScore);
+    }
+  }, [user?.highScore]);
 
   const CAR_COLORS = [
     { color: '#f6b828', isYellow: true, name: 'Sarı Vosvos' },
@@ -88,7 +96,11 @@ export const VosvosGame: React.FC = () => {
     setIsPlaying(false);
     if (timerRef.current) clearInterval(timerRef.current);
     if (spawnerRef.current) clearInterval(spawnerRef.current);
-    setHighScore((prev) => Math.max(prev, score));
+    const newHigh = Math.max(highScore, score);
+    setHighScore(newHigh);
+    if (user && newHigh > (user.highScore || 0)) {
+      updateUserData({ highScore: newHigh });
+    }
   };
 
   const handleCarClick = (car: GameCar) => {
@@ -128,8 +140,13 @@ export const VosvosGame: React.FC = () => {
               Efsane Yol Oyunu: "Sarı Vosvos Gördüm!"
             </h3>
           </div>
-          <p className="text-xs text-[#8C847C] mt-1">
-            Yoldan geçen arabalar arasından sadece <strong>Sarı Vosvosları</strong> yakala ve puanları topla!
+          <p className="text-xs text-[#8C847C] mt-1 flex items-center gap-2">
+            <span>Yoldan geçen arabalar arasından sadece <strong>Sarı Vosvosları</strong> yakala ve puanları topla!</span>
+            {user && (
+              <span className="hidden md:inline-flex items-center gap-1 bg-[#E9EDC9] text-[#5D554D] px-2 py-0.5 rounded-full font-bold text-[10px]">
+                <UserIcon size={11} /> Sürücü: {user.name || user.email.split('@')[0]}
+              </span>
+            )}
           </p>
         </div>
 

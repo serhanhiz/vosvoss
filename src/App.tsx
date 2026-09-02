@@ -32,6 +32,7 @@ import { WhyMostBeautiful } from './components/WhyMostBeautiful';
 import { TimelineGallery } from './components/TimelineGallery';
 import { VosvosQuiz } from './components/VosvosQuiz';
 import { VosvosGame } from './components/VosvosGame';
+import { ProtectedActivityGate } from './components/ProtectedActivityGate';
 import { AuthModal } from './components/AuthModal';
 import { useAuth } from './context/AuthContext';
 import { audioEngine } from './utils/audioEngine';
@@ -93,14 +94,15 @@ export default function App() {
           {/* Navigation Pill Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto py-1">
             {[
-              { id: 'studio', label: 'Tasarım & Ses', icon: Palette },
-              { id: 'why', label: 'Neden En Güzel?', icon: Heart },
-              { id: 'history', label: 'Tarihçe & Motor', icon: History },
-              { id: 'quiz', label: 'Kişilik Testi', icon: HelpCircle },
-              { id: 'game', label: 'Sarı Vosvos Oyunu', icon: Gamepad2 },
+              { id: 'studio', label: 'Tasarım & Ses', icon: Palette, isProtected: false },
+              { id: 'why', label: 'Neden En Güzel?', icon: Heart, isProtected: false },
+              { id: 'history', label: 'Tarihçe & Motor', icon: History, isProtected: false },
+              { id: 'quiz', label: 'Kişilik Testi', icon: HelpCircle, isProtected: true },
+              { id: 'game', label: 'Sarı Vosvos Oyunu', icon: Gamepad2, isProtected: true },
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
+              const isLocked = tab.isProtected && !user;
               return (
                 <button
                   key={tab.id}
@@ -108,7 +110,7 @@ export default function App() {
                     audioEngine.playClick(900);
                     setActiveTab(tab.id as typeof activeTab);
                   }}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide flex items-center gap-1.5 transition-all shrink-0 ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide flex items-center gap-1.5 transition-all shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-[#8FA382] text-[#FDFBF7] shadow-xs'
                       : 'text-[#8C847C] hover:text-[#4A443F] hover:bg-[#F7F3EE]'
@@ -116,6 +118,9 @@ export default function App() {
                 >
                   <Icon className="w-3.5 h-3.5" />
                   <span>{tab.label}</span>
+                  {isLocked && (
+                    <span className="text-[10px] opacity-75 ml-0.5">🔒</span>
+                  )}
                 </button>
               );
             })}
@@ -246,13 +251,21 @@ export default function App() {
 
           {activeTab === 'quiz' && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <VosvosQuiz onApplyPreset={handleApplyPreset} />
+              {user ? (
+                <VosvosQuiz onApplyPreset={handleApplyPreset} />
+              ) : (
+                <ProtectedActivityGate activityType="quiz" />
+              )}
             </motion.div>
           )}
 
           {activeTab === 'game' && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-              <VosvosGame />
+              {user ? (
+                <VosvosGame />
+              ) : (
+                <ProtectedActivityGate activityType="game" />
+              )}
             </motion.div>
           )}
         </section>
